@@ -1,0 +1,343 @@
+<jsp:plugins>
+<jsp:fallback>
+
+plugin:
+
+->plug-in
+->params
+->fallback
+
+<jsp:plugin typ="bean|applet" coed="..." codebase="...">
+<jsp:params>
+<jsp:param name=".." value="..."/>
+</jsp:plugin>
+
+code->applet code
+codebase-appletcode
+
+<jsp:fallback>
+
+->meaning information client browser plugin cannot be started
+
+<jsp:plugin type="bean|applet" code="..." codebase="...">
+<jsp:fallback>
+<p>Error while loading</p>
+</jsp:fallback>
+</jsp:plugin>
+
+jsp plugin attribute:
+
+type
+align
+height
+width
+name
+title
+
+Applet inside in applet:
+
+<html>
+<head>
+<title>
+<body>
+<jsp:plugin type="applet" code="com.psedudo.myapplet.class"
+ codebase="applet">
+<jsp:params>
+<jsp:param name="firstname" value="sekhar"/>
+<jsp:param name="lastname"  value="vasan"/>
+</jsp:params>
+
+<jsp:fallback>
+<p>Error while loading</p>
+</jsp:fallback>
+
+</jsp:plugin>
+
+applet code:
+
+public class myapplet extends applet
+{
+private JLabel label=new JLabel();
+public void init()
+{
+label.setHorizontalAligment(JLabel.CENTER);
+label.SetFont(new Font("Arial",Font.BOLD,20));
+label.SetForeground(Color.BLUE);
+setLayout(new BorderLayout());
+add(Label, BorderLayout.CENTER);
+}
+
+public void start()
+{
+String firstname = getparameter("firstname ");
+String lastname  = getParameter("lastname");
+label.setText("Hello"+Firstname+""+lastname);
+}
+}
+
+JLabel:
+font
+fontbackground
+alignment 
+layout
+
+jsp:
+element
+attriubte
+body
+
+jsp element:
+
+->without a body
+->with a body
+
+without a boduy:
+<jsp:element name="elementName"/>
+</jsp:element>
+
+with a body:
+ 
+<jsp:element name="elementName">
+<jsp:attribute>
+<jsp:body>....</jsp:Body>
+</jsp:attribute>
+</jsp:element>
+
+<body>
+<jsp:element name="h1">
+<jsp:body>Demo on Element,Attribute</jsp:body>
+</jsp:element>
+<jsp:element name="hr"/>
+<jsp:element name="a">
+<jsp:attribute name="href"> somepage.jsp </jsp:attribute>
+<jsp:body> Click here </jsp:body>
+</jsp:element>
+</body>
+
+Standard Actions:
+
+<jsp:scriplet>
+<jsp:useBean>
+include:<jsp:include page="printdate.jsp" flush="true|false"/>
+forward:<jsp:forward page="viewCourse.jsp></jsp:forward>
+param:<jsp:param name="..." value="....."/>
+getproperty:<jsp:getProperty name="course" property="courseName"/>
+setproperty:<jsp:setProperty name="course"  property="courseName" value="<%= courseName%>" />
+useBean:<jsp:useBean id="course" class="com.learn.class" ="request" scope=></jsp:useBean>
+
+
+
+-->param:
+one.jsp:
+name=request.getParameter("name");
+password=request.getParameter("password");
+
+two.jsp:
+param:<jsp:param name="name" value="santhosh">
+param:<jsp:param name="password" value="password">
+
+-->include action:
+
+copy result:
+
+include directive:
+
+copy from one page to another
+
+
+<jsp:forward>=getReqestDispatcher().forward()
+
+--->jsp:forward:
+
+source and destination.
+
+direct commnunication
+
+sendRedirect:
+
+indirect source and destination.
+
+
+<jsp:useBean>
+
+id
+class
+scope
+->page
+->request
+->session
+->application
+type
+beanName
+
+java name:
+
+String name;
+String password;
+getter()
+setter()
+
+user bean:
+
+<jsp:useBean id="name" class="com.psedoms.model.name" scope="request"/>
+
+set property:
+<jsp:useBean id="useBean" class="com.test.class" scoper="request"/>
+<jsp:setProperty name="" property="propertyname|*" value="..." param="..."/>
+
+</jsp:useBean>
+
+
+
+name.jsp:
+
+<form name="f1" action="setName.jsp">
+<p>First Name:<input type="text" name="firstname" id="firstname"/></p>
+<p>Last Name:<input type="text" name="lastname" id="lastname"/></p>
+<p><input type="submit" value="submit"/></p>
+</form>
+
+setName.jsp:
+
+<jsp:useBean id="nameBean" class="com.psdemos.model.name" scoper="request"/>
+<jsp:setProperty name="nameBean" property="firstname" param="firstname"/>
+<jsp:setProperty name="nameBean" property="lastname" param="lastname"/>
+<jsp:setProperty name="nameBean" property="*"/>
+</jsp:useBean>
+
+getProperty:
+
+<jsp:useBean id="nameBean" class="com.psdemos.model.Name" scope="session">
+<p>First name:<jsp:getProperty name="nameBean" property="firstname"></p>
+<p>First name:<jsp:getProperty name="nameBean" property="firstname"></p>
+</jsp:useBean>
+
+
+EXPRESSION LANGUAGE:
+
+INTRO 2.0:
+
+acces data from data bean
+request
+response
+session
+application
+
+${expression language code}
+
++-&/
+&&||
+!= ><!=
+
+${course.courseName}
+${requestScope.course.courseName}
+
+${course.courseName}
+${course.facultyName}
+
+
+JSTL:
+
+loop
+condition execution
+database access
+internationalizations
+xml processing
+
+Tags:
+core tags
+foramtting tags
+database tags
+function tags
+xml tags
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jst/core"%>
+
+<c:out>
+<c:set>
+<c:remove>
+<c:catch>
+<c:if>
+<c:choose>--multiple if statment
+<c:when>
+<c:otherwise>
+<C:import>--inclusion on absolute url
+<c:foreach>
+<c:forTokens>
+<c:param>
+<c:redirect>
+<c:url>--redirect to new url
+
+
+Using Custom Tags:
+
+tag handler:
+
+Simple tag handler
+Classic tag handler
+
+create a tag handler class
+tag library description
+create jsp page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
